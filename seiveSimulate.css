@@ -1,0 +1,67 @@
+body{
+    margin:0;
+    background-color: rgb(102, 102, 146);
+}
+#container{
+    display:flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgb(252, 252, 252);
+}
+.square{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(148, 91, 91);
+    margin: 10px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.primeNumber{
+    background-color: rgba(16, 163, 72, 0.938);
+    color: white;
+}
+
+.nonPrime {
+    background-color: rgb(189, 189, 189);
+    color:rgb(95, 95, 95);
+}
+
+#header{
+    text-align: center;
+    font-size: x-large;
+    padding: 20px 20px;
+
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(102, 102, 146);
+}
+
+input{
+padding: 10px 30px;
+width: 30%;
+font-size: x-large;
+outline: none;
+}
+
+button{
+    display: block;
+    margin: 20px auto 0;
+    font-size: x-large;
+    padding: 10px 30px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background:rgb(209, 209, 207);
+    color: white;
+    outline: none;
+}
+
+button:hover{
+    background: orange;
+}
