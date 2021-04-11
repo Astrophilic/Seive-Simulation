@@ -20,13 +20,13 @@ async function markPrimes(number, clicked = false) {
     fade(squares[0]);
 
 
-    for (var i = 2; i <= number / 2; i++) {
+    for (var i = 2; i * i <= number; i++) {
 
         if (squares[i - 1].classList.contains("primeNumber")) {
             var billboard = document.getElementById("markPrimesOfNumber");
             billboard.innerHTML = "Now marking Multiples of " + i;
             squares[i - 1].classList.add("current");
-            for (var j = 2 * i; j <= number; j += i) {
+            for (var j = i * i; j <= number; j += i) {
 
                 if (squares[j - 1].classList.contains("nonPrime"))
                     continue;
@@ -42,7 +42,7 @@ async function markPrimes(number, clicked = false) {
                 if (!clicked) {
                     await sleepNow(100);
                 }
-                 squares[j - 1].classList.remove("currentMarked")
+                squares[j - 1].classList.remove("currentMarked")
             }
             squares[i - 1].classList.remove("current");
         }
