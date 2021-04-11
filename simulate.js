@@ -23,6 +23,8 @@ async function markPrimes(number) {
     for (var i = 2; i <= number / 2; i++) {
 
         if (squares[i - 1].classList.contains("primeNumber")) {
+            var billboard = document.getElementById("markPrimesOfNumber");
+            billboard.innerHTML="Now marking Multiples of "+i;
             squares[i-1].classList.add("current");
             for (var j = 2 * i; j <= number; j += i) {
                 squares[j - 1].classList.remove("primeNumber");
