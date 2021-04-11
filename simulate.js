@@ -1,4 +1,6 @@
-function markPrimes(number) {
+const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+async function markPrimes(number) {
 
     squares = document.querySelectorAll(".square");
     // mark 1 as non prime
@@ -10,11 +12,12 @@ function markPrimes(number) {
     for (var i = 2; i <= number / 2; i++) {
 
         if (squares[i - 1].classList.contains("primeNumber")) {
-
+            
             for (var j = 2 * i; j <= number; j += i) {
                 squares[j - 1].classList.remove("primeNumber");
                 squares[j - 1].classList.add("nonPrime");
                 squares[j - 1].innerHTML = " ";
+                await sleepNow(500);
             }
         }
     }
