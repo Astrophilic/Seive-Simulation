@@ -30,10 +30,32 @@ body{
 .nonPrime {
     background-color: rgb(189, 189, 189);
     color:rgb(95, 95, 95);
+    position: relative;
 }
 
+.nonPrime:after {
+    content: '';
+    height: 60px;
+    border-left: 10px solid rgb(0, 0, 0);
+    position: absolute;
+    transform: rotate(45deg);
+    left: 48px;
+}
+
+.nonPrime:before {
+    content: '';
+    height: 60px;
+    border-left: 10px solid rgb(0, 0, 0);
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 48px;
+}
 .current {
     background-color: orange;
+}
+
+.currentMarked {
+    background-color: rgb(255, 212, 212);
 }
 #header{
     text-align: center;
