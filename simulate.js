@@ -3,7 +3,7 @@ const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 function fade(element) {
     var op = 1;  // initial opacity
     var timer = setInterval(function () {
-        if (op <= 0.1){
+        if (op <= 0.1) {
             clearInterval(timer);
         }
         element.style.opacity = op;
@@ -11,29 +11,35 @@ function fade(element) {
         op -= op * 0.1;
     }, 50);
 }
-async function markPrimes(number) {
-
+async function markPrimes(number,clicked=false) {
     squares = document.querySelectorAll(".square");
     // mark 1 as non prime
     squares[0].classList.remove("primeNumber");
     squares[0].classList.add("nonPrime");
     squares[0].innerHTML = " ";
+    fade(squares[0]);
 
 
     for (var i = 2; i <= number / 2; i++) {
 
         if (squares[i - 1].classList.contains("primeNumber")) {
             var billboard = document.getElementById("markPrimesOfNumber");
-            billboard.innerHTML="Now marking Multiples of "+i;
-            squares[i-1].classList.add("current");
+            billboard.innerHTML = "Now marking Multiples of " + i;
+            squares[i - 1].classList.add("current");
             for (var j = 2 * i; j <= number; j += i) {
                 squares[j - 1].classList.remove("primeNumber");
                 squares[j - 1].classList.add("nonPrime");
                 squares[j - 1].innerHTML = " ";
-                fade(squares[j-1]);
-                await sleepNow(500);
+                fade(squares[j - 1]);
+
+                document.getElementById('getInstantly').addEventListener("click", function () {
+                    clicked = true;
+                });
+                if (!clicked) {
+                    await sleepNow(500);
+                }
             }
-           squares[i-1].classList.remove("current");
+            squares[i - 1].classList.remove("current");
         }
     }
 
@@ -72,4 +78,10 @@ mark.addEventListener("click", function name(params) {
     markPrimes(inputNumber);
 })
 
+
+document.getElementById('getInstantly').addEventListener("click", function () {
+    var inputNumber = document.getElementById("textbox").value;
+    
+    markPrimes(inputNumber,true);
+});
 
