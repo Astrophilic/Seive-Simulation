@@ -3,7 +3,7 @@ const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 function fade(element) {
     var op = 1;  // initial opacity
     var timer = setInterval(function () {
-        if (op <= 0.1) {
+        if (op <= 0.3) {
             clearInterval(timer);
         }
         element.style.opacity = op;
@@ -11,7 +11,7 @@ function fade(element) {
         op -= op * 0.1;
     }, 50);
 }
-async function markPrimes(number,clicked=false) {
+async function markPrimes(number, clicked = false) {
     squares = document.querySelectorAll(".square");
     // mark 1 as non prime
     squares[0].classList.remove("primeNumber");
@@ -27,8 +27,12 @@ async function markPrimes(number,clicked=false) {
             billboard.innerHTML = "Now marking Multiples of " + i;
             squares[i - 1].classList.add("current");
             for (var j = 2 * i; j <= number; j += i) {
+
+                if (squares[j - 1].classList.contains("nonPrime"))
+                    continue;
                 squares[j - 1].classList.remove("primeNumber");
                 squares[j - 1].classList.add("nonPrime");
+                squares[j - 1].classList.add("currentMarked");
                 squares[j - 1].innerHTML = " ";
                 fade(squares[j - 1]);
 
@@ -36,8 +40,9 @@ async function markPrimes(number,clicked=false) {
                     clicked = true;
                 });
                 if (!clicked) {
-                    await sleepNow(500);
+                    await sleepNow(100);
                 }
+                 squares[j - 1].classList.remove("currentMarked")
             }
             squares[i - 1].classList.remove("current");
         }
@@ -81,7 +86,7 @@ mark.addEventListener("click", function name(params) {
 
 document.getElementById('getInstantly').addEventListener("click", function () {
     var inputNumber = document.getElementById("textbox").value;
-    
-    markPrimes(inputNumber,true);
+
+    markPrimes(inputNumber, true);
 });
 
