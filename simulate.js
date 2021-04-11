@@ -1,5 +1,16 @@
 const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 
+function fade(element) {
+    var op = 1;  // initial opacity
+    var timer = setInterval(function () {
+        if (op <= 0.1){
+            clearInterval(timer);
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= op * 0.1;
+    }, 50);
+}
 async function markPrimes(number) {
 
     squares = document.querySelectorAll(".square");
@@ -12,13 +23,15 @@ async function markPrimes(number) {
     for (var i = 2; i <= number / 2; i++) {
 
         if (squares[i - 1].classList.contains("primeNumber")) {
-            
+            squares[i-1].classList.add("current");
             for (var j = 2 * i; j <= number; j += i) {
                 squares[j - 1].classList.remove("primeNumber");
                 squares[j - 1].classList.add("nonPrime");
                 squares[j - 1].innerHTML = " ";
+                fade(squares[j-1]);
                 await sleepNow(500);
             }
+           squares[i-1].classList.remove("current");
         }
     }
 
